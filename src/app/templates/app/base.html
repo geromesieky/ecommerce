@@ -25,6 +25,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Accueil</a>
               </li>
@@ -50,8 +51,6 @@
               <li class="nav-item">
                 <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
               </li>
-              
-              
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
@@ -62,13 +61,13 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown mx-2">
               <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sieky
+                {{request.user.username}}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Commande</a></li>
-                <li><a class="dropdown-item" href="#">Changer <br> Mot de passe</a></li>
-                <li><a class="dropdown-item" href="#">Deconnexion</a></li>
+                <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Changer <br> Mot de passe</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Deconnexion</a></li>
               </ul>
             </li>
             <li class="nav-item mx-2">
@@ -77,12 +76,14 @@
             <li class="nav-item mx-2">
                 <a class="nav-link text-white" href="#">Panier 4</a>
             </li>
+            {% else %}
             <li class="nav-item mx-2">
-                <a class="nav-link text-white" href="#">Connexion</a>
+                <a class="nav-link text-white" href="{% url 'login' %}">Connexion</a>
             </li>
             <li class="nav-item mx-2">
-                <a class="nav-link text-white" href="#">Inscription</a>
+                <a class="nav-link text-white" href="{% url 'customerregistration' %}">Inscription</a>
             </li>
+            {% endif %}
           </ul>
 
         </div>
