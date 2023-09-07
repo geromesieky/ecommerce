@@ -52,9 +52,9 @@
                 <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
-              <button class="btn btn-outline-primary" type="submit">Chercher</button>
+            <form class="d-flex" role="search" action="/search">
+              <input class="form-control me-2" type="search" name="search" placeholder="Recherche" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit">Chercher</button>
             </form>
           </div>
 
@@ -65,13 +65,13 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Commande</a></li>
+                <li><a class="dropdown-item" href="{% url 'checkout' %}">Commande</a></li>
                 <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Changer <br> Mot de passe</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Deconnexion</a></li>
               </ul>
             </li>
             <li class="nav-item mx-2">
-                <a class="nav-link text-white" href="#">Carte 4</a>
+                <a class="nav-link text-white" href="#"><span class="badge bg-danger">{% if totalitem > 0 %} {{totalitem}} {% endif %}</span>Carte 4</a>
             </li>
             <li class="nav-item mx-2">
                 <a class="nav-link text-white" href="#">Panier 4</a>
@@ -94,6 +94,7 @@
     {% block banner-slider %}{% endblock banner-slider %}
     {% block information %}{% endblock information %}
     {% block main-content %}{% endblock main-content %}
+    {% block payment-gateway %}{% endblock payment-gateway %}
     {% comment %} Content End  {% endcomment %}
     
     {% comment %} Footer Start  {% endcomment %}
