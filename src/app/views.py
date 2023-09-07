@@ -59,7 +59,6 @@ class ProductDetail(View):
         product = Product.objects.get(pk=pk)
         return render(request, "app/productdetail.html", locals())
 
-@method_decorator(login_required, name='dispatch')
 class CustomerRegistrationView(View):
     def get(self, request):
         form = CustomerRegistrationForm()
